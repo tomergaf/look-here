@@ -2,6 +2,8 @@
 
 ## This is a utility for using a local llm + vision model with Ollama for asking questions about screenshots
 
+#### *Built with Meta LLama 3.2*
+
 ### Steps to run
 
 ### 1. Install requirements
@@ -27,12 +29,11 @@ ollama pull llama3.2-vision
 ### 5. Take a screenshot
 ![img.png](resource/img.png)
 
-### 6. Run the script with a question
+### 6. Start the ui and ask a question
 ```bash
-python look-here.py "What kind of animal is this?"
+python look_here.py 
 ```
 
 
-## License and Disclosure:
+## Licensing:
 This project uses the [LLaMA 3.2 model](https://www.llama.com/llama3/license/) by Meta , which is provided under the terms of Meta's license. Please review Meta's license before using this project.
-### Built with Meta LLama 3
