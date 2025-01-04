@@ -1,6 +1,6 @@
 import os
-import sys
 import ollama
+from ui import ui
 from PIL import ImageGrab
 
 
@@ -17,11 +17,10 @@ def get_image_path_from_clipboard() -> str | None:
         return None
 
 
-def process_image(question: str = 'explain this image'):
+def process_image(question: None | str = 'explain this image'):
     image_path = get_image_path_from_clipboard()
     if not image_path:
-        print("No image found in clipboard")
-        return
+        raise Exception("No image found in clipboard")
     try:
         response = ollama.chat(
             model='llama3.2-vision',
@@ -33,7 +32,9 @@ def process_image(question: str = 'explain this image'):
             }]
         )
         for message in response:
-            print(message['message']['content'], end='', flush=True)
+            if os.getenv('CONSOLE'):
+                print(message['message']['content'], end='', flush=True)
+            yield message['message']['content']
     except Exception as e:
         print(f"Error during chat: {e}")
     finally:
@@ -42,17 +43,8 @@ def process_image(question: str = 'explain this image'):
             print("Image removed")
         except Exception as e:
             print(f"Error removing temporary image file: {e}")
-            pass
-
-
-def main(argv):
-    if len(argv) > 2:
-        print("Usage: python look-here.py [optional_question]")
-        return
-    question = argv[1] if len(argv) == 2 else None
-    process_image(question)
 
 if __name__ == '__main__':
-    main(sys.argv)
+    ui.main()
 
 
