@@ -31,3 +31,8 @@ ollama pull llama3.2-vision
 ```bash
 python look-here.py "What kind of animal is this?"
 ```
+
+
+## License and Disclosure:
+This project uses the [LLaMA 3.2 model](https://www.llama.com/llama3/license/) by Meta , which is provided under the terms of Meta's license. Please review Meta's license before using this project.
+### Built with Meta LLama 3
